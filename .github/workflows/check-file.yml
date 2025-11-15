@@ -1,0 +1,26 @@
+name: Comprobar archivo obligatorio
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+      - "*"
+
+jobs:
+  check-required-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Verificar que existe el Dockerfile
+        run: |
+          if [ -f "Dockerfile" ]; then
+            echo "✅ El archivo Dockerfile existe."
+          else
+            echo "❌ El archivo Dockerfile NO existe."
+            exit 1
+          fi
