@@ -1,11 +1,10 @@
-name: Comprobar archivo obligatorio
+name: Comprobar que existe index.html
 
 on:
   push:
     branches:
       - main
       - master
-      - develop
       - "*"
 
 jobs:
@@ -16,11 +15,11 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: Verificar que existe el Dockerfile
+      - name: Verificar que existe index.html
         run: |
-          if [ -f "Dockerfile" ]; then
-            echo "✅ El archivo Dockerfile existe."
+          if [ -f "index.html" ]; then
+            echo "✅ El archivo index.html existe."
           else
-            echo "❌ El archivo Dockerfile NO existe."
+            echo "❌ El archivo index.html NO existe."
             exit 1
           fi
